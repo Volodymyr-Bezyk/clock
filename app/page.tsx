@@ -8,28 +8,32 @@ function getCurrentTime(): object {
 
   const minutes = now.getMinutes();
   const seconds = now.getSeconds();
-  const hours = currentHour === 0 ? 12 : currentHour - 12;
 
-  const amOrPm = hours >= 12 ? "PM" : "AM";
+  const hours =
+    currentHour === 0 ? 12 : currentHour > 12 ? currentHour - 12 : currentHour;
 
-  return { hours, minutes, seconds };
+  const amOrPm = currentHour >= 12 ? "PM" : "AM";
+
+  return { hours, minutes, seconds, amOrPm };
 }
 
 export default function Home() {
   const [hour, setHour] = useState(0);
   const [min, setMin] = useState(0);
   const [sec, setSec] = useState(0);
+  const [amOrPm, setAmOrPm] = useState(0);
 
   useEffect(() => {
     let intId: any = null;
 
     intId = setInterval(() => {
       const time = getCurrentTime();
-      const { hours, minutes, seconds } = time;
+      const { hours, minutes, seconds, amOrPm } = time;
 
       setHour(hours);
       setMin(minutes);
       setSec(seconds);
+      setAmOrPm(amOrPm);
     }, 1000);
     return () => clearInterval(intId);
   }, []);
@@ -45,7 +49,7 @@ export default function Home() {
 
   return (
     <div className=" min-h-screen flex items-start justify-end px-5 py-5">
-      <span>
+      <span className=" font-extrabold">
         {hour.toString().padStart(2, "0")} : {min.toString().padStart(2, "0")} :
         {sec.toString().padStart(2, "0")}
       </span>
@@ -60,7 +64,7 @@ export default function Home() {
             {
               "after:bg-blue-200": sec - 1 < i,
               "after:bg-blue-500": sec - 1 >= i,
-              "bg-slate-300": sec - 1 < i && i % 5 !== 0,
+              "bg-slate-300": sec < i && i % 5 !== 0,
               "bg-blue-500": sec >= i && i % 5 !== 0,
               "bg-transparent": i === 0 || i % 5 === 0,
             }
@@ -69,7 +73,7 @@ export default function Home() {
           const numbersSecStyle = classNames("numbers-hide text-[6px]", {
             "numbers-show text-center -ml-[3.5px] -mt-[1px] h-[7px] w-[7px] font-medium ":
               i === 0 || i % 5 === 0,
-            "text-blue-900": (i === 0 || i % 5 === 0) && sec >= i && i !== 0,
+            "text-blue-900 font-bold": (i === 0 || i % 5 === 0) && sec >= i,
             "text-blue-900 ": (i === 0 || i % 5 === 0) && sec - 1 >= i,
           });
           return (
@@ -103,7 +107,7 @@ export default function Home() {
               {
                 "after:bg-orange-200": min - 1 < i,
                 "after:bg-orange-500": min - 1 >= i,
-                "bg-slate-300": min - 1 < i && i % 5 !== 0,
+                "bg-slate-500": min < i && i % 5 !== 0,
                 "bg-orange-500": min >= i && i % 5 !== 0,
                 "bg-transparent": i === 0 || i % 5 === 0,
               }
@@ -112,9 +116,8 @@ export default function Home() {
             const numbersMinsStyle = classNames("numbers-hide text-[4.5px]", {
               "numbers-show text-center -ml-[2.5px] -mt-[1px] h-[6px] w-[6px] font-medium ":
                 i === 0 || i % 5 === 0,
-              "text-orange-900":
-                (i === 0 || i % 5 === 0) && min + 1 >= i && i !== 0,
-              "text-orange-900 ": (i === 0 || i % 5 === 0) && min >= i,
+              "text-orange-900 font-bold": (i === 0 || i % 5 === 0) && min >= i,
+              "text-orange-900 ": (i === 0 || i % 5 === 0) && min - 1 >= i,
             });
 
             return (
@@ -148,8 +151,8 @@ export default function Home() {
                 "": hour > h,
                 "after:bg-green-100": hour <= h,
                 "after:bg-green-700": hour > h,
-                "text-green-100": hour < h,
-                "text-green-700": hour >= h,
+                "text-green-100 font-medium": hour < h,
+                "text-green-700 font-extrabold": hour >= h,
               }
             );
 
@@ -165,6 +168,10 @@ export default function Home() {
               </div>
             );
           })}
+
+          <div className=" absolute top-[25px] left-[25px] text-slate-800 font-bold text-sm">
+            {amOrPm}
+          </div>
         </div>
       </div>
     </div>
