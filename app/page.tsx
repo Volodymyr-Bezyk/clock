@@ -22,7 +22,8 @@ export default function Home() {
           );
 
           const numbersStyle = classNames("numbers-hide text-[5px]", {
-            "numbers-show text-center -ml-[2.5px]": i === 0 || i % 5 === 0,
+            "numbers-show text-center -ml-[2.5px] -mt-[1px] h-[6px] w-[6px]":
+              i === 0 || i % 5 === 0,
           });
           return (
             <div
