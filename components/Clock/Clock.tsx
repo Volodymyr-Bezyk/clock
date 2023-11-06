@@ -129,7 +129,7 @@ export const Clock: React.FC = () => {
               "after:h-[16px] after:w-[85px] after:-mt-[7px] after:rounded-[0_35%_35%_0]",
               {
                 "after:bg-green-100": hour <= h,
-                "after:bg-green-300": hour >= h,
+                "after:bg-green-300": hour > h || h - 12 === 0,
                 "text-green-100 font-medium": hour < h,
                 "text-green-700 font-extrabold": hour >= h,
               }
