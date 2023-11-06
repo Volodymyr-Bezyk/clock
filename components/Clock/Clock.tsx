@@ -74,16 +74,16 @@ export const Clock: React.FC = () => {
         before:top-[10px] before:left-[10px] before:z-10 before:block"
         ></div>
 
-        {/* <div
-          className="absolute h-[108px] w-[108px] rounded-[50%] top-4 left-4 border-[3px] border-slate-300 z-50
-        before:absolute before:content-[''] before:h-[98px] before:w-[98px] before:rounded-[50%] before:border-2 before:border-slate-300
-        before:z-10 before:block before:top-[2px] before:left-[2px]"
+        <div
+          className="absolute h-[460px] w-[460px] rounded-[50%] top-[50px] left-[50px] border-[10px] border-slate-300 z-50
+        before:absolute before:content-[''] before:h-[430px] before:w-[430px] before:rounded-[50%] before:border-[5px] before:border-slate-300
+        before:z-10 before:block before:top-[5px] before:left-[5px]"
         >
           {diallines.map((i, idx) => {
             const diallineMinStyle = classNames(
-              "origin-[50%_45px] top-[6px] ml-[-0.4px] left-1/2 w-[0.8px] h-[5px] absolute",
+              "origin-[50%_215px] top-[5px] ml-[-0.4px] left-1/2 w-[0.8px] h-[15px] absolute",
               "after:content-[''] after:absolute after:top-0 after:right[-6px] after:rotate-[3deg] after:block after:z-[-1]",
-              "after:h-[3px] after:w-[5.5px] after:bg-black after:rounded-[0_25%_25%_0] after:-mt-[7px]",
+              "after:h-[10px] after:w-[23px] after:bg-black after:-mt-[7px]",
               {
                 "after:bg-orange-200": min - 1 < i,
                 "after:bg-orange-500": min - 1 >= i,
@@ -93,8 +93,8 @@ export const Clock: React.FC = () => {
               }
             );
 
-            const numbersMinsStyle = classNames("numbers-hide text-[4.5px]", {
-              "numbers-show text-center -ml-[2.5px] -mt-[1px] h-[6px] w-[6px] font-medium ":
+            const numbersMinsStyle = classNames("numbers-hide text-[16px]", {
+              "numbers-show text-center -ml-[10px] -mt-[1px] h-[20px] w-[20px] font-medium ":
                 i === 0 || i % 5 === 0,
               "text-orange-900 font-bold": (i === 0 || i % 5 === 0) && min >= i,
               "text-orange-900 ": (i === 0 || i % 5 === 0) && min - 1 >= i,
@@ -112,25 +112,24 @@ export const Clock: React.FC = () => {
               </div>
             );
           })}
-        </div> */}
+        </div>
 
-        {/* <div
-          className="absolute h-[76px] w-[76px] rounded-[50%] top-8 left-8 border-[2px] border-transparent z-[40]
-        before:absolute before:content-[''] before:h-[66px] before:w-[66px] before:rounded-[50%] before:border-[3px] before:border-slate-300
-        before:z-10 before:block before:top-[3px] before:left-[3px]
-        after:absolute after:content-[''] after:h-[76px] after:w-[76px] after:rounded-[50%] after:border-2 after:border-slate-300
-        after:block after:top-[-2px] after:left-[-2px]
+        <div
+          className="absolute h-[340px] w-[340px] rounded-[50%] top-[110px] left-[110px] z-[40] 
+        before:absolute before:content-[''] before:h-[300px] before:w-[300px] before:rounded-[50%] before:border-[8px] before:border-slate-300
+        before:z-10 before:block before:top-[20px] before:left-[20px]
+        after:absolute after:content-[''] after:h-full after:w-full after:rounded-[50%] after:border-[10px] after:border-slate-300
+        after:block after:top-[0px] after:left-[0px]
         "
         >
           {hours.map((h, idx) => {
             const diallineHourStyle = classNames(
-              "origin-[50%_34px] top-[2px] ml-[-3px] left-1/2 absolute z-[-10]",
-              "after:content-[''] after:absolute after:top-[5.5px] after:right[-6px] after:rotate-[12deg] after:block after:z-[-10]",
-              "after:h-[5px] after:w-[20px] after:bg-black after:rounded-[0_25%_25%_0] after:-mt-[7px] ",
+              "origin-[50%_140px] top-[30px] ml-[-6px] left-1/2 absolute z-[-10]",
+              "after:content-[''] after:absolute after:top-[-8px] after:right[-6px] after:rotate-[17deg] after:block after:z-[-10]",
+              "after:h-[16px] after:w-[85px] after:-mt-[7px] after:rounded-[0_35%_35%_0]",
               {
-                "": hour > h,
                 "after:bg-green-100": hour <= h,
-                "after:bg-green-700": hour > h,
+                "after:bg-green-300": hour >= h,
                 "text-green-100 font-medium": hour < h,
                 "text-green-700 font-extrabold": hour >= h,
               }
@@ -142,17 +141,17 @@ export const Clock: React.FC = () => {
                 className={diallineHourStyle}
                 style={{ transform: `rotate(${h * 30}deg)` }}
               >
-                <div className=" -ml-[3.5px] text-[7px] font-medium mt-[2px]">
+                <div className=" -ml-[10px] text-[16px] font-medium mt-[2px] w-5 h-5">
                   {h.toString().padStart(2, "0")}
                 </div>
               </div>
             );
           })}
 
-          <div className=" absolute top-[25px] left-[25px] text-slate-800 font-bold text-sm">
+          <div className=" absolute top-[135px] left-[135px] text-slate-800 font-bold text-4xl">
             {amOrPm}
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );
