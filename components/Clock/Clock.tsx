@@ -126,11 +126,9 @@ export const Clock: React.FC = () => {
             const diallineHourStyle = classNames(
               "origin-[50%_140px] top-[30px] ml-[-6px] left-1/2 absolute z-[-10]",
               "after:content-[''] after:absolute after:top-[-8px] after:right[-6px] after:rotate-[17deg] after:block after:z-[-10]",
-              "after:h-[16px] after:w-[85px] after:-mt-[7px] after:rounded-[0_35%_35%_0]",
+              "after:h-[16px] after:w-[85px] after:-mt-[7px] after:rounded-[0_35%_35%_0] after:bg-green-100 text-green-100 font-medium",
               {
-                "after:bg-green-100": hour <= h,
-                "after:bg-green-300": hour > h || h - 12 === 0,
-                "text-green-100 font-medium": hour < h,
+                "after:bg-green-300": hour > h,
                 "text-green-700 font-extrabold": hour >= h,
               }
             );
