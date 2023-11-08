@@ -130,6 +130,7 @@ export const Clock: React.FC = () => {
               {
                 "after:bg-green-300": hour > h,
                 "text-green-700 font-extrabold": hour >= h,
+                "text-red-700": hour === h,
               }
             );
 
